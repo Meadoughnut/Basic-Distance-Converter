@@ -1,15 +1,16 @@
 <!doctype html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Miles to Kilometers Converter</title>
-	
+
 	<!--/ /-------- Normalize CSS --------/ /-->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
-	
+
 	<!--/ /-------- Google Fonts --------/ /-->
 	<link href="https://fonts.googleapis.com/css?family=Oswald|PT+Sans&display=swap" rel="stylesheet">
-	
+
 	<!--/ /-------- My Styles --------/ /-->
 	<link href="styles.css" rel="stylesheet">
 
@@ -18,42 +19,47 @@
 <body>
 
 	<h1>Miles to Kilometers Converter</h1>
-    
-    <div class="container top">
-    	<p>Type in a number of miles and click the button to convert the distance to kilometers.</p>
-        
-        <form method="post" action="somephpfile.php" id="convert">
-        
-        	<input type="text" name="distance" id="distance" placeholder="distance">
-            <input type="submit" name="convertdist" value="Convert Distance">
-        
-        </form>
-    </div>
-    <div class="container bottom" id="answer">
-    	<h2 class="invisible">Answer goes here</h2>
-    </div>
+
+	<div class="container top">
+		<p>Type in a number of miles and click the button to convert the distance to kilometers.</p>
+
+		<form method="post" action="somephpfile.php" id="convert">
+
+			<input type="text" name="distance" id="distance" placeholder="distance">
+			<input type="submit" name="convertdist" value="Convert Distance">
+
+		</form>
+	</div>
+	<div class="container bottom" id="answer">
+		<h2 class="invisible">Answer goes here</h2>
+	</div>
 
 
 	<script>
-		document.getElementById("convert").addEventListener("submit", function(event){
+		document.getElementById("convert").addEventListener("submit", function (event) {
 			event.preventDefault();
-            
+
 			// Get the value that is logged by the user & Changes the string to the number.
-			var distance = parseFloat(document.getElementById('distance').value);  
-			 
-			if(distance){
+			var distance = parseFloat(document.getElementById('distance').value);
+			var answer = document.getElementById('answer');
+
+			if (distance) {
 				//convert and display
-				var conversion = distance * 1.609344;
-				var roundedConversion = (Math.round(conversion * 1000))/1000;
+				var conversion = (distance * 1.609344).toFixed(3);
 
-
+				
+				answer.innerHTML = `<h2>${distance} miles conerts to ${conversion} kilometers<h2>`;
 			}
-			else{
+			else {
 				//display an error
+				answer.innerHTML = `<h2>Please insert a number<h2`;
 			}
+
+
 
 
 		})
 	</script>
 </body>
+
 </html>
